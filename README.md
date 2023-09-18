@@ -3,4 +3,4 @@ A small app that simulates a mechanical keyboard with every tap. Dont get fooled
 
 It keeps track pf all your keys. Once you type something interesting, its captured💀. Have fun
 
-Run python mechanicalKeys.py in the root folder to run
+Run python main.py in the root folder to run

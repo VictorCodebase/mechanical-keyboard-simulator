@@ -14,7 +14,7 @@ Your cheap keyoard can finally feel useful🙂. No need to thank me
 
 ## Running&installation
 
-- [Download release v1.1.2-alpha (setup)]([https://github.com/VictorCodebase/mechanical-keyboard-simulator/releases/tag/v1.1.2-alpha](https://github.com/VictorCodebase/mechanical-keyboard-simulator/releases/download/v1.1.2-alpha/MechanicalKeysSim_Setup_build_v1.1.2_Win.exe)
+- [Download release v1.1.2-alpha (setup)](https://github.com/VictorCodebase/mechanical-keyboard-simulator/releases/download/v1.1.2-alpha/MechanicalKeysSim_Setup_build_v1.1.2_Win.exe)
 - [Download zip](https://github.com/VictorCodebase/mechanical-keyboard-simulator/archive/refs/tags/v1.1.2-alpha.zip)
 - [Clone this repo](https://github.com/VictorCodebase/mechanical-keyboard-simulator.git)
 - [Run on codespaces](https://github.com/VictorCodebase/mechanical-keyboard-simulator?openIn=GitHub%20Codespaces)

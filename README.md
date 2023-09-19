@@ -10,7 +10,7 @@ Your cheap keyoard can finally feel useful🙂. No need to thank me
 - [Running&installation](#Running&installation)
 - [Dependancies](#Dependancies)
 - [Usage](#usage)
-- [important notice](#Really important)
+- [important notice](#Really important!!)
 - [contributing](#contributing)
 
 ## Running&installation

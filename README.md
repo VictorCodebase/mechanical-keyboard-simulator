@@ -33,6 +33,7 @@ If you get any errors, ensure you're in the root folder and all dependercies are
 
 If you use the installer, everything should be fairly obvious.  
 follow through the installation process. Proceed to open the software  
+
 Please expect some warnings about the author being unknown. I dont know how to get authentication certificates yet, this will probably be fixed in a future update
 
 The application is currently a console application (expect updates). No interactions are needed in this very basic version 1.1.2-alpha  

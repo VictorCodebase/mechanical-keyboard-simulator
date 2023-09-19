@@ -10,7 +10,7 @@ Your cheap keyoard can finally feel useful🙂. No need to thank me
 - [Running&installation](#Running&installation)
 - [Dependancies](#Dependancies)
 - [Usage](#usage)
-- [important notice](#Really important!!)
+- [important notice](#Really_Important!!)
 - [contributing](#contributing)
 
 ## Running&installation
@@ -39,7 +39,7 @@ Feel free to leave it to do its thing whilst in background.
 
 
 
-# Really important!!
+# Really_Important!!
 Follow these steps to ensure the software fires every time you log in for a smooth experience
 
 press win + r

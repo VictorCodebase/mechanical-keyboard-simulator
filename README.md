@@ -53,7 +53,20 @@ youre done🎉🎉
 ## Contributing
 
 Feel more than free to create PRs to improve this. Especially the UI part. Ill be really grateful.  
-In case you add assets, please remember to use the resource_path method.
+
+Dream UI💫:
+
+
+![light mode 1](https://github.com/VictorCodebase/mechanical-keyboard-simulator/assets/135356007/cb0fdd72-dd9f-4314-9860-7eda4ede14b2)
+
+![light mode 2](https://github.com/VictorCodebase/mechanical-keyboard-simulator/assets/135356007/5b4b0ff6-f89a-4ccc-b520-f53659a53191)
+
+
+![dark mode 1](https://github.com/VictorCodebase/mechanical-keyboard-simulator/assets/135356007/7ece23ca-dfb2-4758-97be-64fdda5da875)
+
+current UI🤡🤡
+![image](https://github.com/VictorCodebase/mechanical-keyboard-simulator/assets/135356007/6d4a0e7b-178d-4f35-88a7-58324834c1b5)
+
 
 
 ✨✨Thnx✨✨

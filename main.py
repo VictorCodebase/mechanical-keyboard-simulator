@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import Label
 from tkinter import Button
 from tkinter import Canvas
+from tkinter import Frame
 from linkedlist import *
 from themes import *
 import keyResponse
@@ -46,36 +47,139 @@ window.configure(bg=theme.primaryColor())
 window.resizable(False, False)
 
 #?word per minute display
-Label(window, text="23", bg= theme.primaryColor(), fg=theme.textColor(), font=("Inter", 80, 'bold')).place(x =29, y = 53)
-Label(window, text="Avg", bg= theme.primaryColor(), fg=theme.textColor(), font=("Inter", 20)).place(x =155, y = 90)
-Label(window, text="WPM", bg= theme.primaryColor(), fg=theme.textColor(), font=("Inter", 20)).place(x =155, y = 127)
+Label(
+    window, 
+    text="23", 
+    bg= theme.primaryColor(), 
+    fg=theme.textColor(), 
+    font=("Inter", 80, 'bold')
+    ).place(x =29, y = 53)
+Label(
+    window, 
+    text="Avg", 
+    bg= theme.primaryColor(), 
+    fg=theme.textColor(), 
+    font=("Inter", 20)
+    ).place(x =155, y = 90)
+Label(
+    window, 
+    text="WPM", 
+    bg= theme.primaryColor(), 
+    fg=theme.textColor(), 
+    font=("Inter", 20)
+    ).place(x =155, y = 127)
 
 #?fastest word per minute display   
-Label(window, text="96", bg= theme.primaryColor(), fg=theme.textColor(), font=("Inter", 80, 'bold')).place(x =29, y = 180)
-Label(window, text="Fastest", bg= theme.primaryColor(), fg=theme.textColor(), font=("Inter", 20)).place(x =155, y = 217)
-Label(window, text="WPM", bg= theme.primaryColor(), fg=theme.textColor(), font=("Inter", 20)).place(x =155, y = 254)
+Label(
+    window, 
+    text="96", 
+    bg= theme.primaryColor(), 
+    fg=theme.textColor(), 
+    font=("Inter", 80, 'bold')
+    ).place(x =29, y = 180)
+Label(
+    window, 
+    text="Fastest", 
+    bg= theme.primaryColor(), 
+    fg=theme.textColor(), 
+    font=("Inter", 20)
+    ).place(x =155, y = 217)
+Label(
+    window, 
+    text="WPM", 
+    bg= theme.primaryColor(), 
+    fg=theme.textColor(), 
+    font=("Inter", 20)
+    ).place(x =155, y = 254)
 
 #? Change keyboard sound menu
 
 Canvas(width=260, height=275 ,bg=theme.secondaryColor(), highlightthickness=0).place(x= 290, y= 36)
 
-randomSound = Button(window, text="Random", bg=theme.primaryColor(), width=15, fg=theme.textColor(), font=("Inter", 15), relief="flat", activebackground=theme.primaryColor(), activeforeground=theme.textColor(), borderwidth=0, highlightthickness=1)
-randomSound.place(x= 300, y= 46)
+borderColor = Frame(window, background=theme.textColor())
 
-settings = Button(window, text="Sts", bg=theme.primaryColor(), width=5, fg=theme.textColor(), font=("Inter", 15), relief="flat", activebackground=theme.primaryColor(), activeforeground=theme.textColor(), borderwidth=0, highlightthickness=1)
-settings.place(x= 480, y= 46)
+randomSound = Button(
+    window,
+    text="Random",
+    bg=theme.secondaryColor(),
+    width=15,
+    fg=theme.textColor(),
+    font=("Inter", 15),
+    activebackground=theme.primaryColor(),
+    activeforeground=theme.textColor(),
+    borderwidth=1,
+    highlightthickness=1,
+    highlightbackground=theme.textColor()  # Specify the outline color here
+)
+randomSound.place(x=300, y=46)
 
-Sound_1 = Button(window, text="1980's type Writer", bg=theme.primaryColor(), width=21, fg=theme.textColor(), font=("Inter", 15), relief="flat", activebackground=theme.primaryColor(), activeforeground=theme.textColor(), borderwidth=0, highlightthickness=1)
-Sound_1.place(x= 300, y= 106)
+settings = Button(
+    window,
+    text="Sts",
+    bg=theme.secondaryColor(),
+    width=5,
+    fg=theme.textColor(),
+    font=("Inter", 15),
+    activebackground=theme.primaryColor(),
+    activeforeground=theme.textColor(),
+    borderwidth=1,
+    highlightthickness=1,
+    highlightbackground=theme.textColor()  # Specify the outline color here
+)
+settings.place(x=480, y=46)
 
-Sound_2 = Button(window, text="Modern Keyboard", bg=theme.primaryColor(), width=21, fg=theme.textColor(), font=("Inter", 15), relief="flat", activebackground=theme.primaryColor(), activeforeground=theme.textColor(), borderwidth=0, highlightthickness=1)
-Sound_2.place(x= 300, y= 166)
+Sound_1 = Button(
+    window,
+    text="1980's type Writer",
+    bg=theme.secondaryColor(),
+    width=21,
+    fg=theme.textColor(),
+    font=("Inter", 15),
+    activebackground=theme.primaryColor(),
+    activeforeground=theme.textColor(),
+    borderwidth=1,
+    highlightthickness=1,
+    highlightbackground=theme.textColor()  # Specify the outline color here
+)
 
-Sound_3 = Button(window, text="Mechanical Keyboard", bg=theme.primaryColor(), width=21, fg=theme.textColor(), font=("Inter", 15), relief="flat", activebackground=theme.primaryColor(), activeforeground=theme.textColor(), borderwidth=0, highlightthickness=1)
-Sound_3.place(x= 300, y= 226)
+Sound_2 = Button(
+    window,
+    text="Modern Keyboard",
+    bg=theme.secondaryColor(),
+    width=21,
+    fg=theme.textColor(),
+    font=("Inter", 15),
+    activebackground=theme.primaryColor(),
+    activeforeground=theme.textColor(),
+    borderwidth=1,
+    highlightthickness=1,
+    highlightbackground=theme.textColor()  # Specify the outline color here
+)
+
+Sound_3 = Button(
+    window,
+    text="Mechanical Keyboard",
+    bg=theme.secondaryColor(),
+    width=21,
+    fg=theme.textColor(),
+    font=("Inter", 15),
+    activebackground=theme.primaryColor(),
+    activeforeground=theme.textColor(),
+    borderwidth=1,
+    highlightthickness=0,
+    highlightbackground=theme.textColor()  # Specify the outline color here
+)
+
+buttons = [Sound_1, Sound_2, Sound_3]
+def place_buttons(spacing, starting_x=300, starting_y=106):
+    for i in range(len(buttons)):
+        buttons[i].place(x=300, y=106 + spacing * i)
+
+place_buttons(60)
 
 
-#? keyboard sound menu title
+
+
 
 keyResponse.run()
 

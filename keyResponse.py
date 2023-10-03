@@ -48,6 +48,7 @@ def run():
            randomizeSound()
            #TODO: use dynamic sound to set volume
            currentSound.set_volume(dynamicVolume.get_dynamic_volume())
+           print(dynamicVolume.get_dynamic_volume())
            currentSound.play()
     def keyPressed(key):
         global keyPressedNotebook, keypresses

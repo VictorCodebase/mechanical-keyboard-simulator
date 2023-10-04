@@ -14,6 +14,7 @@ keypresses = 0
 keyVolume = 0.1
 currentTime = time.time()
 prevTime = 0
+currentTheme = "./audio/thock/"
 
 #?credit for resource_path method: https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file
 def resource_path(relative_path):
@@ -22,7 +23,7 @@ def resource_path(relative_path):
         base_path = sys._MEIPASS2 #if MEIPASS2 doesnt work, switch to MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
-
+    
     return os.path.join(base_path, relative_path)
 
 
@@ -35,12 +36,12 @@ def getLength(array):
 def run():
 
     print("Mechanical keys simulator is running \n\nGreetings from VictorCodebase. Visit my github for more fun stuff: https://github.com/VictorCodebase")
-    currentSound = pygame.mixer.Sound(resource_path('key-1.wav'))
+    currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-1.wav'))
     # I could remember how to get length os an array in python; So here we are
     def randomizeSound():
         global currentSound, keyVolume, resource_path
         sound = [1, 1, 1, 2, 3, 3]
-        currentSound = pygame.mixer.Sound(resource_path(f'key-{sound[random.randint(0, getLength(sound))]}.wav'))
+        currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-{sound[random.randint(0, getLength(sound))]}.wav'))
     def on_key_event(e):
         if e.event_type == keyboard.KEY_DOWN:
            #print(f'Key pressed: {e.name}')
@@ -48,6 +49,7 @@ def run():
            randomizeSound()
            #TODO: use dynamic sound to set volume
            currentSound.set_volume(dynamicVolume.get_dynamic_volume())
+           #currentSound.set_volume(1)
            print(dynamicVolume.get_dynamic_volume())
            currentSound.play()
     def keyPressed(key):

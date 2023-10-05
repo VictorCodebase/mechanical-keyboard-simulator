@@ -1,0 +1,8 @@
+minimize_to_tray:False,
+dynamic_volume:True,
+base_volume:1.0,
+emmersive_feedback:False,
+3d_emmersive_intensity:1.0, 
+key_theme:1,
+theme:device,
+name:Victor

@@ -8,9 +8,10 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 def get_dynamic_volume():
     system_volume = get_sys_vol()
 
+    #TODO: allow users to set base volume. probably use a txt file to store basic settings?
     if system_volume is not None:
         scaling_factor = 1.0 - (system_volume / 100.0)
-        key_volume = 0.1 + (scaling_factor / 2.0) #! alter to change volume
+        key_volume = 1.0 + (scaling_factor / 2.0) #! alter to change volume
         return float('{:.2f}'.format(key_volume))
 
 def get_sys_vol():

@@ -45,3 +45,5 @@ class theme:
             return themes["lightText"]
         else:
             return themes["darkText"]
+    def warn():
+        return "#FF0000"

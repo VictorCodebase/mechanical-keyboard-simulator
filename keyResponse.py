@@ -16,9 +16,11 @@ currentTime = time.time()
 prevTime = 0
 key_themes = {
     1: "./audio/thock/",
-    2: "./audio/raining_glass_marble/"
+    2: "./audio/raining_glass_marble/",
+    3: "./audio/typewriter/"
 }
 currentTheme = key_themes[int(get_preference('key_theme'))]
+
 
 
 
@@ -44,15 +46,14 @@ def run():
     print("Mechanical keys simulator is running \n\nGreetings from VictorCodebase. Visit my github for more fun stuff: https://github.com/VictorCodebase")
     currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-1.wav'))
     # I could remember how to get length os an array in python; So here we are
-    def randomizeSound():
-        global currentSound, keyVolume, resource_path
-        sound = [0, 1, 1, 2, 3, 3]
-        currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-{sound[random.randint(0, getLength(sound))]}.wav'))
+    # def randomizeSound():
+    #     global currentSound, keyVolume, resource_path, currentTheme
+    #     sound = [0, 1, 1, 2, 2, 2, 3, 3]
+    #     currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-0.wav'))
     def on_key_event(e):
         if e.event_type == keyboard.KEY_DOWN:
            #print(f'Key pressed: {e.name}')
            #keyPressed(e.name)
-           randomizeSound()
            currentSound.set_volume(dynamicVolume.get_dynamic_volume())
            #currentSound.set_volume(1)
            currentSound.play()

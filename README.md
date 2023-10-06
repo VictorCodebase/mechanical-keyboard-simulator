@@ -68,7 +68,8 @@ Dream UI💫:
 
 current UI🤡🤡  
 
-![image](https://github.com/VictorCodebase/mechanical-keyboard-simulator/assets/135356007/6d4a0e7b-178d-4f35-88a7-58324834c1b5)
+![image](https://github.com/VictorCodebase/mechanical-keyboard-simulator/assets/135356007/ba149282-a0e7-472d-968c-b75a3ea322c8)
+
 
 
 

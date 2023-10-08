@@ -9,9 +9,12 @@ import sys
 import os
 pygame.init()
 
+
+
 keyPressedNotebook = linkedlist.LinkedList()
 keypresses = 0
 keyVolume = 0.1
+#FIXME: keypresses is not being reset to 0 after 150 keypresses
 currentTime = time.time()
 prevTime = 0
 key_themes = {
@@ -19,9 +22,11 @@ key_themes = {
     2: "./audio/raining_glass_marble/",
     3: "./audio/typewriter/"
 }
-currentTheme = key_themes[int(get_preference('key_theme'))]
 
 
+def settingsInit():
+    global currentTheme
+    currentTheme = key_themes[int(get_preference('key_theme'))]
 
 
 #?credit for resource_path method: https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file

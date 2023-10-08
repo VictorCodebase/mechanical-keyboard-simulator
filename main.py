@@ -3,9 +3,11 @@
 import pygame
 import tkinter as tk
 from linkedlist import *
-from home import *
-from settings import *
-import keyResponse
+import themes
+import home
+import settings as settings
+import keyResponse as kResponse
+import dynamicVolume as dVolume
 import sys
 import os
 pygame.init()
@@ -31,14 +33,17 @@ Logo = resource_path("Logo.png")
 window = tk.Tk()
 window.title("Mechanical Keys Simulator")
 window.geometry("566x339")
-window.configure(bg=theme.primaryColor())
+window.configure(bg=themes.theme.primaryColor())
 
 #window.iconbitmap(resource_path("Logo.ico"))
 window.resizable(False, False)
 
-home(window)
+dVolume.settingsInit()
+kResponse.settingsInit()
 
-keyResponse.run()
+
+home.home(window)
+kResponse.run()
 
 window.mainloop()
 

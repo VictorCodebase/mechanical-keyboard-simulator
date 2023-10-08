@@ -1,6 +1,8 @@
 import tkinter as tk
 from themes import *
 from settings import *
+from utility import *
+from keyResponse import *
 from PIL import ImageTk, Image
 import sys
 import os
@@ -15,20 +17,29 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+# def makeTransparent(image, icon):
+#         for x in range(image.width):
+#             for y in range(image.height):
+#                 if image.getpixel((x, y)) == (0, 0, 0, 0):  # Transparent pixel
+#                     icon.create_rectangle(
+#                         x,
+#                         y,
+#                         x + 1,
+#                         y + 1,
+#                         fill=theme.secondaryColor(),  # Set to your background color
+#                         outline=theme.textColor(),
+#                     )
+
+
+
 def home(window):
     
-    def openSettings():
+    def openSettings(arg):
         settings()
     
-    settingsImg = ImageTk.PhotoImage(Image.open(resource_path("settings.png")))
-
-    def doSth(self):
-        print("Hello")
-    def doSth1(self):
-        print("Hello1")
-    def doSth2(self):
-        print("Hello2")
-
+    # stsImage = Image.open(resource_path("./images/light_mode_settings.png"))
+    # settingsImg = ImageTk.PhotoImage(stsImage)
+    img = PhotoImage(file=resource_path("./images/light_mode_settings.png"))
 
     #?word per minute display
     Label(
@@ -81,34 +92,41 @@ def home(window):
     Canvas(window, width=280, height=360 ,bg=theme.secondaryColor(), highlightthickness=0).place(x= 290, y= 0)
 
 
-    Label(
+
+    settingsBtn = Label(
         window,
-        text="Themes",
         bg=theme.secondaryColor(),
-        width=15,
-        height=2,
+        text='Settings',
+        width=21,
+        height=1,
+        cursor='hand2',
         fg=theme.textColor(),
+        background=theme.primaryColor(),
         font=("Inter", 15),
         activebackground=theme.primaryColor(),
         activeforeground=theme.textColor(),
         borderwidth=1,
         highlightthickness=1,
         highlightbackground=theme.textColor()  # Specify the outline color here
-    ).place(x=300, y=36)
-    Label(
-        window,
-        text="Sts",
-        bg=theme.secondaryColor(),
-        width=5,
-        height=2,
-        fg=theme.textColor(),
-        font=("Inter", 15),
-        activebackground=theme.primaryColor(),
-        activeforeground=theme.textColor(),
-        borderwidth=1,
-        highlightthickness=1,
-        highlightbackground=theme.textColor()  # Specify the outline color here
-    ).place(x=476, y=36)
+    )
+    settingsBtn.place(x=300, y=26)
+    settingsBtn.bind("<Button-1>", openSettings)
+    
+    # settingsIcon = Canvas(
+    #     window,
+    #     width=stsImage.width,
+    #     height=stsImage.height,
+    # )
+    # settingsIcon.place(x= 500, y= 50)
+    # settingsIcon.create_image(0,0,anchor=tk.NW, image=settingsImg)
+    #Im really sorry. I really tried to get a transparent icon here, but its too much work. Feel free to do that. Ill make custom icons instead
+
+    # Label(
+    #     window,
+    #     image=img
+    # ).place(x= 500, y= 50)
+
+
 
 
     # button styling
@@ -134,6 +152,8 @@ def home(window):
         highlightthickness=highlight_thickness,
         highlightbackground=theme.textColor()  
     )
+    
+    ###########Hello. I am here to remind you that you look pretty today✨. Have a nice day.###########
 
     Sound_2 = Label(
         window,
@@ -151,7 +171,7 @@ def home(window):
     )
     Sound_3 = Label(
         window,
-        text="Raining glass marble",
+        text="1980's typwriter",
         bg=theme.secondaryColor(),
         width=button_width,
         height=button_height,
@@ -172,8 +192,63 @@ def home(window):
             buttons[i].place(x=starting_x, y=starting_y + spacing * i)
 
         #! Remember to manually bind funtionality here
-        buttons[0].bind("<Button-1>", doSth)
-        buttons[1].bind("<Button-1>", doSth1)
-        buttons[2].bind("<Button-1>", doSth2)
+        buttons[0].bind("<Button-1>", thock_theme)
+        buttons[1].bind("<Button-1>", raining_glass_theme)
+        buttons[2].bind("<Button-1>", typwriter_theme)
+        #! Selected theme button changes colour here
+        buttons[int(get_preference('key_theme')) - 1].config(bg=theme.primaryColor())
+
+
+    def thock_theme(arg):
+        themeNum = 1
+        current_theme = get_preference('key_theme')
+        buttons[int(current_theme) - 1].config(bg=theme.secondaryColor())
+        buttons[0].config(bg=theme.primaryColor())
+        set_preference('key_theme', themeNum)
+
+            #TODO: allow users to play demo sounds
+            # currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-1.wav'))
+            # currentSound.set_volume(dynamicVolume.get_dynamic_volume())
+            # #currentSound.set_volume(1)
+            # currentSound.play()
+        restart(arg)
+
+
+    def raining_glass_theme(arg):
+        themeNum = 2
+        current_theme = get_preference('key_theme')
+        buttons[int(current_theme) - 1].config(bg=theme.secondaryColor())
+        buttons[1].config(bg=theme.primaryColor())
+        set_preference('key_theme', themeNum)
+        restart(arg)
+
+    def typwriter_theme(arg):
+        themeNum = 3
+        current_theme = get_preference('key_theme')
+        buttons[int(current_theme) - 1].config(bg=theme.secondaryColor())
+        buttons[2].config(bg=theme.primaryColor())
+        set_preference('key_theme', themeNum)
+        restart(arg)
 
     place_buttons(button_spacing)
+
+    def restart(arg):
+        restart_warnign.config(text="* Restarting to apply changes")
+        window.after(1000, perform_restart)
+    
+    def perform_restart():
+        os.execl(sys.executable, sys.executable, *sys.argv)
+        
+#ajndksndaondisbdj jsdnjnkansansdck o naskdmklamdkaklmmksmdak
+
+    #? Restart warning
+    restart_warnign = Label(
+        window,
+        text="",
+        bg=theme.secondaryColor(),
+        fg=theme.warn(),
+        font=("Inter", 10),  
+    )
+    restart_warnign.place(x=300, y= 310)
+
+

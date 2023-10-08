@@ -25,7 +25,7 @@ def resource_path(relative_path):
 
 
 Logo = resource_path("Logo.png")
-currentTracks = 3
+
 
 
 window = tk.Tk()

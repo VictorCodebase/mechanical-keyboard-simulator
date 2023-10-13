@@ -3,6 +3,6 @@ dynamic_volume:True,
 key_volume:1.5,
 emmersive_feedback:False,
 3d_emmersive_intensity:1.0, 
-key_theme:1
+key_theme:2
 theme:device,
 name:Victor

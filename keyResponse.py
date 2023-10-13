@@ -23,10 +23,14 @@ key_themes = {
     3: "./audio/typewriter/"
 }
 
+defaltTheme = 2
 
 def settingsInit():
     global currentTheme
-    currentTheme = key_themes[int(get_preference('key_theme'))]
+    try:
+        currentTheme = key_themes[int(get_preference('key_theme'))]
+    except:
+        currentTheme = key_themes[defaltTheme]
 
 
 #?credit for resource_path method: https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file

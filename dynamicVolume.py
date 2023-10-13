@@ -10,7 +10,10 @@ current_volume = default_volume
 
 def settingsInit():
     global current_volume
-    current_volume = float(util.get_preference('key_volume'))
+    try:
+        current_volume = float(util.get_preference('key_volume'))
+    except:
+        current_volume = default_volume
 
 
 def get_dynamic_volume():
@@ -19,7 +22,8 @@ def get_dynamic_volume():
     #TODO: allow users to set base volume. probably use a txt file to store basic settings?
     if system_volume is not None:
         scaling_factor = 1.0 - (system_volume / 100.0)
-        key_volume = current_volume + (scaling_factor / 2.0) #! alter to change volume
+        key_volume = current_volume - (scaling_factor / 2.0) #! alter to change volume
+        print(f"System volume: {system_volume}, key volume: {key_volume}")
         return float('{:.2f}'.format(key_volume))
 
 def get_sys_vol():

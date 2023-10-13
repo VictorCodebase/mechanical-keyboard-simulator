@@ -242,6 +242,7 @@ def home(window):
 #ajndksndaondisbdj jsdnjnkansansdck o naskdmklamdkaklmmksmdak
 
     #? Restart warning
+    #TODO: Let user choose to restart but give option to automatically restart next time
     restart_warnign = Label(
         window,
         text="",

@@ -1,8 +1,15 @@
 import sqlite3
 
-connect = sqlite3.connect('preferences.db')
-cursor = connect.cursor() # cursor is used to execute SQL commands, like a pointer
 
+
+def connect():
+    connect = sqlite3.connect('db/preferences.db')
+    #! To test, please comment out the following line and comment the previous one to get the right path
+    #connect = sqlite3.connect('preferences.db')
+    cursor = connect.cursor() # (to me) behaves like a pointer
+    return connect, cursor
+
+connect_, cursor = connect()
 
 
 #method to fetch data
@@ -14,20 +21,31 @@ def fetch_all(table):
     else:
         return None
     
-def change_val(preference, value):
-    cursor.execute('UPDATE settings SET ' + preference + ' = ? WHERE _id = 1', (value,))
-    connect.commit()
+def fetch_one(table = 'settings', column = '*'):
+    cursor.execute('SELECT ' + column + ' FROM ' + table )
+    data = cursor.fetchall()
+    if data:
+        return data[0][0] 
+    else:
+        return None
+    
+def change_val(table, preference, value):
+    cursor.execute('UPDATE ' +table + ' SET ' + preference + ' = ? WHERE _id = 1', (value,))
+    connect_.commit()
     return True
 
-def change_values(settings):
+def change_values(table, settings):
     if type(settings) != dict:
         raise TypeError('A dictionay was expected as argument') 
+    if len(settings) == 0 or settings == None:
+        raise ValueError('A non-empty dictionary was expected as argument')
+
             
     try:
         for setting, value in settings.items():
-            cursor.execute('UPDATE settings SET ' + setting + ' = ? WHERE _id = 1', (value,))
+            cursor.execute('UPDATE ' + table + ' SET ' + setting + ' = ? WHERE _id = 1', (value,))
             print(setting,  "updated to", value)
-        connect.commit()
+        connect_.commit()
     except Exception as e:
         print(e)
         return 'Setting update could not be completed'
@@ -45,12 +63,14 @@ def insert():
         2 #key_theme
         )
     cursor.execute('INSERT INTO settings ("cancel_to_tray", "dynamic_vol", "key_vol", "emmersive_feedback", "theme", "key_theme") VALUES (?, ?, ?, ?, ?, ?)', values)
-    connect.commit()
+    connect_.commit()
     return True
 
 
 ## Uncomment the following lines to test the methods
+#! I added a parameter 'table' for these methods, but Im not really feeling like updating this part. You'll have to do it; sorry🙃
 #insert()
 #print(fetch_all('settings'))
 #print(change_val('theme', 'dark'))
 #print(change_values({'theme': 'light', 'key_theme': 1}))
+#print(fetch_one())

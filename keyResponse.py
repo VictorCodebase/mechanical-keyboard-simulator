@@ -7,6 +7,7 @@ import pygame
 import time
 import sys
 import os
+import db.db as db
 pygame.init()
 
 
@@ -23,14 +24,14 @@ key_themes = {
     3: "./audio/typewriter/"
 }
 
-defaltTheme = 2
+current_theme = 2
 
 def settingsInit():
-    global currentTheme
-    try:
-        currentTheme = key_themes[int(get_preference('key_theme'))]
-    except:
-        currentTheme = key_themes[defaltTheme]
+    db.connect()
+    global current_theme
+    current_theme = key_themes[db.fetch_one('settings', 'key_theme')]
+    print(current_theme)
+
 
 
 #?credit for resource_path method: https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file
@@ -53,12 +54,12 @@ def getLength(array):
 def run():
 
     print("Mechanical keys simulator is running \n\nGreetings from VictorCodebase. Visit my github for more fun stuff: https://github.com/VictorCodebase")
-    currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-1.wav'))
+    currentSound = pygame.mixer.Sound(resource_path(f'{current_theme}/key-1.wav'))
     # I could remember how to get length os an array in python; So here we are
     # def randomizeSound():
-    #     global currentSound, keyVolume, resource_path, currentTheme
+    #     global currentSound, keyVolume, resource_path, current_theme
     #     sound = [0, 1, 1, 2, 2, 2, 3, 3]
-    #     currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-0.wav'))
+    #     currentSound = pygame.mixer.Sound(resource_path(f'{current_theme}key-0.wav'))
     def on_key_event(e):
         if e.event_type == keyboard.KEY_DOWN:
            #print(f'Key pressed: {e.name}')

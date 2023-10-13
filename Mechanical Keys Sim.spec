@@ -43,5 +43,3 @@ exe = EXE(
     entitlements_file=None,
     icon=['icon.ico'],
 )
-
-datas=[('user_preference', '.')]

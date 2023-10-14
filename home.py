@@ -1,12 +1,13 @@
-import tkinter as tk
+from tkinter import *
 from themes import *
-from settings import *
-from utility import *
+import settings as settings
+import db.db as db
 from keyResponse import *
 from PIL import ImageTk, Image
 import sys
 import os
 
+current_theme = 2
 
 def resource_path(relative_path):
     try:
@@ -17,25 +18,16 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-# def makeTransparent(image, icon):
-#         for x in range(image.width):
-#             for y in range(image.height):
-#                 if image.getpixel((x, y)) == (0, 0, 0, 0):  # Transparent pixel
-#                     icon.create_rectangle(
-#                         x,
-#                         y,
-#                         x + 1,
-#                         y + 1,
-#                         fill=theme.secondaryColor(),  # Set to your background color
-#                         outline=theme.textColor(),
-#                     )
-
-
-
+def settingsInit():
+    db.connect()
+    global current_theme
+    current_theme = db.fetch_one('settings', 'key_theme')
+    print(current_theme)
+settingsInit()
 def home(window):
     
     def openSettings(arg):
-        settings()
+        settings.settings()
     
     # stsImage = Image.open(resource_path("./images/light_mode_settings.png"))
     # settingsImg = ImageTk.PhotoImage(stsImage)
@@ -191,20 +183,21 @@ def home(window):
         for i in range(len(buttons)):
             buttons[i].place(x=starting_x, y=starting_y + spacing * i)
 
-        #! Remember to manually bind funtionality here
+        #? Remember to manually bind funtionality here
         buttons[0].bind("<Button-1>", thock_theme)
         buttons[1].bind("<Button-1>", raining_glass_theme)
         buttons[2].bind("<Button-1>", typwriter_theme)
-        #! Selected theme button changes colour here
-        buttons[int(get_preference('key_theme')) - 1].config(bg=theme.primaryColor())
+        #? Selected theme button changes colour here
+        buttons[current_theme - 1].config(bg=theme.primaryColor())
 
 
     def thock_theme(arg):
+        global current_theme
         themeNum = 1
-        current_theme = get_preference('key_theme')
-        buttons[int(current_theme) - 1].config(bg=theme.secondaryColor())
-        buttons[0].config(bg=theme.primaryColor())
-        set_preference('key_theme', themeNum)
+        button_num = 0
+        buttons[current_theme - 1].config(bg=theme.secondaryColor())
+        buttons[button_num].config(bg=theme.primaryColor())
+        db.change_val('key_theme', themeNum)
 
             #TODO: allow users to play demo sounds
             # currentSound = pygame.mixer.Sound(resource_path(f'{currentTheme}key-1.wav'))
@@ -216,18 +209,18 @@ def home(window):
 
     def raining_glass_theme(arg):
         themeNum = 2
-        current_theme = get_preference('key_theme')
-        buttons[int(current_theme) - 1].config(bg=theme.secondaryColor())
-        buttons[1].config(bg=theme.primaryColor())
-        set_preference('key_theme', themeNum)
+        button_num = 1
+        buttons[current_theme - 1].config(bg=theme.secondaryColor())
+        buttons[button_num].config(bg=theme.primaryColor())
+        db.change_val('key_theme', themeNum)
         restart(arg)
 
     def typwriter_theme(arg):
         themeNum = 3
-        current_theme = get_preference('key_theme')
-        buttons[int(current_theme) - 1].config(bg=theme.secondaryColor())
-        buttons[2].config(bg=theme.primaryColor())
-        set_preference('key_theme', themeNum)
+        button_num = 2
+        buttons[current_theme - 1].config(bg=theme.secondaryColor())
+        buttons[button_num].config(bg=theme.primaryColor())
+        db.change_val('key_theme', themeNum)
         restart(arg)
 
     place_buttons(button_spacing)

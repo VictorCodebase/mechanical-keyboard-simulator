@@ -1,7 +1,7 @@
-import utility as util
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+import db.db as db
 
 #TODO: next feature: 3d audio. Stereo keysound responsive to where the key is in the keyboard.
 
@@ -9,11 +9,10 @@ default_volume = 1.5
 current_volume = default_volume
 
 def settingsInit():
+    db.connect()
     global current_volume
-    try:
-        current_volume = float(util.get_preference('key_volume'))
-    except:
-        current_volume = default_volume
+    current_volume = float(db.fetch_one('settings', 'key_vol'))
+    print(current_volume)
 
 
 def get_dynamic_volume():

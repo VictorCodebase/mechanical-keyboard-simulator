@@ -29,7 +29,7 @@ def fetch_one(table = 'settings', column = '*'):
     else:
         return None
     
-def change_val(table, preference, value):
+def change_val(preference, value, table='settings'):
     cursor.execute('UPDATE ' +table + ' SET ' + preference + ' = ? WHERE _id = 1', (value,))
     connect_.commit()
     return True
